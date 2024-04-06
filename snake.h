@@ -15,23 +15,28 @@ enum class INDEX{
 
 class Snake{
     public:
-        Snake();
+        Snake(HANDLE console);
+        void goto_(int x, int y);
         void init_board();
         void draw_board();
+        void draw_snake();
         void spawn_apple();
-        void input_handler();
-        void move_snake(int dirx, int diry);
+        bool input_handler();
+        bool move_snake();
     private:
-        int snake_length;
-        int posx;
-        int posy;
+        HANDLE console;
+        unsigned int snake_length;
+        int posx, posy;
+        int dirx, diry;
+        const int board_posx = 10;
+        const int board_posy = 10;
         int x_array[100];
         int y_array[100];
         int apple_posx;
         int apple_posy;
         int board_length;
         int board_heigth;
-        int board[10][15];
+        int board[15][15];
 
 };
 #endif
