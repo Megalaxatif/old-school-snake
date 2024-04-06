@@ -21,6 +21,7 @@ class Snake{
         void draw_board();
         void draw_snake();
         void spawn_apple();
+        void draw_snake_length();
         bool input_handler();
         bool move_snake();
     private:
@@ -28,15 +29,14 @@ class Snake{
         unsigned int snake_length;
         int posx, posy;
         int dirx, diry;
-        const int board_posx = 10;
-        const int board_posy = 10;
         int x_array[100];
         int y_array[100];
-        int apple_posx;
-        int apple_posy;
-        int board_length;
-        int board_heigth;
-        int board[15][15];
-
+        int apple_posx, apple_posy;
+        int ath_posx, ath_posy;
+        const int board_posx = 6;
+        const int board_posy = 0;
+        static const int board_length = 15;
+        static const int board_heigth = 15;
+        int board[board_length][board_heigth];
 };
 #endif
