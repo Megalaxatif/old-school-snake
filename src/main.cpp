@@ -1,5 +1,4 @@
 #include "snake.h"
-bool game_over = false;
 
 int main(){
     system("cls"); // clear the console
@@ -9,18 +8,14 @@ int main(){
     cursor_info.bVisible = FALSE;
     SetConsoleCursorInfo(console, &cursor_info); // the cursor is off for more style :)
     Snake snake(console);
-    snake.init_board();
-    snake.spawn_apple();
-    snake.draw_board();
-    snake.move_snake();
-    snake.draw_snake_length();
-    while (!game_over){
+
+    while (snake.get_game_status() != GAME_STATUS::GAME_QUIT){
         Sleep(175); // delay
-        if (snake.input_handler() == true){ // take the input if it returns true, it means that the game stopped
-            game_over = true;
-        }
-    }
-    system("cls");
+        snake.input_handler(); // take the input and move the snake
+        if(snake.get_game_status() == GAME_STATUS::GAME_OVER) snake.game_over(); // basically, it restart the game if we lose
+        
+    }   
+    system("cls"); // clear the console
     cursor_info.bVisible = TRUE;
     SetConsoleCursorInfo(console, &cursor_info);
     std::cout << "GAME OVER !";
